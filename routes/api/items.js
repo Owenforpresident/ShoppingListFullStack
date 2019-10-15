@@ -1,4 +1,4 @@
-const express = require("./node_modules/express"); // Brings in the necesary tools we need from express
+const express = require("../../node_modules/express"); // Brings in the necesary tools we need from express
 const router = express.Router(); // and assings them to variables so we can use them
 
 //brings in the item model
