@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {
+import {										//brings in thethings we need to build this component
 	Button,
 	Modal,
 	ModalHeader,
@@ -12,30 +12,30 @@ import {
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemActions";
 
-class ItemModal extends Component {
+class ItemModal extends Component {				//declares a classed based component
 	state = {
-		modal: false,
-		name: " "
+		modal: false,					//sets compoenent state to modal not being open
+		name: " "						//sets the name property as empty so it can be entered by user
 	};
-	toggle = () => {
+	toggle = () => {					//toggle function for flipping the state (open to closed)
 		this.setState({
-			modal: !this.state.modal
+			modal: !this.state.modal			//and vice versa
 		});
 	};
 
 	onChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
+		this.setState({ [e.target.name]: e.target.value });		//when this event takes place set the user entered value to the "name"
 	};
 
-	onSubmit = e => {
-		e.preventDefault();
-		const newItem = {
+	onSubmit = e => {			//when they click submit 
+		e.preventDefault();		//stops the browser from automatically reloading
+		const newItem = {			//name entered to build a new item object which fits our schema for mongo
 			name: this.state.name
 		};
 
-		this.props.addItem(newItem);
+		this.props.addItem(newItem);		//submits the newly created item to the database
 
-		this.toggle();
+		this.toggle(); //toggles the modal so it goes away afer they have added theyre new item
 	};
 	render() {
 		return (
@@ -69,11 +69,11 @@ class ItemModal extends Component {
 		);
 	}
 }
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({		{/* Application level state */}
 	item: state.item
 });
 
-export default connect(
+export default connect(  {/* Export so these things can be useful elsewhere, (redux and app.js) */}
 	mapStateToProps,
 	{ addItem }
 )(ItemModal);
